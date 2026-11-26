@@ -1,0 +1,945 @@
+```html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Earning BD - Earn Money Online</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            purple: '#6B4EE6',
+                            darkPurple: '#5338CA',
+                            lightPurple: '#F3F0FF',
+                            accent: '#EC4899'
+                        }
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(-100%)' }
+                        }
+                    },
+                    animation: {
+                        marquee: 'marquee 18s linear infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            background-color: #0f172a;
+        }
+        .purple-gradient-card {
+            background: linear-gradient(135deg, #7C3AED 0%, #6B4EE6 50%, #4F46E5 100%);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        #wheel {
+            transition: transform 4s cubic-bezier(0.15, 0.99, 0.18, 0.99);
+        }
+    </style>
+</head>
+<body class="flex justify-center items-center min-h-screen sm:py-6">
+
+    <!-- Mobile Responsive Container (Frame) -->
+    <div class="w-full max-w-md bg-slate-50 min-h-screen sm:min-h-[860px] sm:max-h-[900px] sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col relative border border-slate-700/30">
+        
+        <!-- HEADER / NAVBAR -->
+        <header class="bg-white px-4 py-3 flex items-center justify-between border-b border-slate-100 shadow-sm sticky top-0 z-30">
+            <div class="flex items-center gap-2">
+                <button onclick="toggleSidebar()" class="w-9 h-9 rounded-xl bg-purple-50 text-brand-purple flex items-center justify-center hover:bg-purple-100 active:scale-95 transition">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+                <div class="leading-tight">
+                    <h1 class="text-base font-bold text-slate-800 tracking-tight flex items-center gap-1">
+                        Quick Earning <span class="bg-brand-purple text-white text-[10px] px-1.5 py-0.5 rounded-md font-extrabold uppercase">BD</span>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <!-- Admin Switch Button -->
+                <button onclick="toggleAdminPanel()" title="Toggle Admin Panel" class="px-2 py-1 bg-amber-500 text-white rounded-lg text-[10px] font-bold flex items-center gap-1 shadow hover:bg-amber-600 transition">
+                    <i class="fa-solid fa-user-shield"></i> <span id="mode-text">Admin</span>
+                </button>
+                
+                <button onclick="showNotifications()" class="w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-slate-200 relative">
+                    <i class="fa-regular fa-bell text-base"></i>
+                    <span id="notif-badge" class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full animate-ping"></span>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full"></span>
+                </button>
+
+                <div onclick="openProfileModal()" class="w-9 h-9 rounded-full bg-purple-100 border-2 border-brand-purple flex items-center justify-center text-brand-purple font-bold text-xs overflow-hidden cursor-pointer">
+                    <img id="user-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=QuickUser" alt="Profile" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </header>
+
+        <!-- USER VIEW PORT -->
+        <div id="user-view" class="flex-1 overflow-y-auto flex flex-col hide-scrollbar">
+            
+            <!-- MAIN CONTENT AREA -->
+            <main class="flex-1 px-4 py-3 space-y-3.5 pb-24">
+                
+                <!-- MARQUEE ANNOUNCEMENT -->
+                <div class="bg-indigo-50/90 border border-indigo-100 rounded-xl p-2.5 flex items-center gap-2.5 text-xs text-indigo-950 font-medium shadow-sm">
+                    <div class="w-7 h-7 rounded-lg bg-brand-purple text-white flex items-center justify-center shrink-0 shadow-sm">
+                        <i class="fa-solid fa-bullhorn text-xs animate-bounce"></i>
+                    </div>
+                    <div class="overflow-hidden whitespace-nowrap w-full">
+                        <p id="announcement-text" class="inline-block animate-marquee font-medium">
+                            Quick Earning BD-তে স্বাগতম! ঘরে বসেই আপনার স্মার্টফোন দিয়ে দৈনিক ৩০০-৫০০ টাকা আয় করুন। রেফার করে আয় বাড়ান!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- PURPLE BALANCE CARD -->
+                <div class="purple-gradient-card text-white rounded-2xl p-5 shadow-xl shadow-purple-200/50 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-36 h-36 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="absolute -left-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+
+                    <div class="flex justify-between items-start mb-1">
+                        <div>
+                            <p class="text-[11px] text-purple-100 font-semibold tracking-wider uppercase opacity-90">Current Balance</p>
+                            <h2 class="text-3xl font-black mt-0.5 tracking-tight flex items-baseline gap-1.5">
+                                <span class="text-lg font-bold text-purple-200">BDT</span> 
+                                <span id="main-balance">173.90</span>
+                            </h2>
+                        </div>
+                        <div class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center text-white text-lg shadow-inner border border-white/20">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                    </div>
+
+                    <!-- DEPOSIT & WITHDRAW BUTTONS -->
+                    <div class="grid grid-cols-2 gap-3 mt-5">
+                        <button onclick="openModal('depositModal')" class="bg-indigo-600/60 hover:bg-indigo-600/80 backdrop-blur-md py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition active:scale-95 border border-white/20 shadow-md">
+                            <i class="fa-solid fa-arrow-down-long text-sm"></i> DEPOSIT
+                        </button>
+                        <button onclick="openModal('withdrawModal')" class="bg-white text-brand-purple hover:bg-purple-50 py-2.5 px-3 rounded-xl font-extrabold text-xs flex items-center justify-center gap-2 transition active:scale-95 shadow-md">
+                            <i class="fa-solid fa-arrow-up-long text-sm"></i> WITHDRAW
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TELEGRAM & YOUTUBE BUTTONS -->
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="https://t.me" target="_blank" class="bg-white border border-slate-100 rounded-2xl p-3 flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md transition active:scale-95 group">
+                        <div class="w-8 h-8 rounded-full bg-sky-500 text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition">
+                            <i class="fa-brands fa-telegram"></i>
+                        </div>
+                        <span class="text-xs font-bold text-slate-700">Telegram</span>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="bg-white border border-slate-100 rounded-2xl p-3 flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md transition active:scale-95 group">
+                        <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <span class="text-xs font-bold text-slate-700">YouTube</span>
+                    </a>
+                </div>
+
+                <!-- OUR SERVICES CONTAINER -->
+                <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-3.5 border-l-4 border-brand-purple pl-2.5">
+                        <h3 class="font-bold text-slate-800 text-sm tracking-wide">Our Services</h3>
+                        <span class="text-[10px] font-semibold text-slate-400">18 Services Available</span>
+                    </div>
+
+                    <!-- 3-COLUMN SERVICE GRID -->
+                    <div class="grid grid-cols-3 gap-2.5">
+                        
+                        <!-- Service Item Template Buttons -->
+                        <button onclick="handleServiceClick('Gmail Service')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-red-50 text-red-500 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Gmail Service</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('Facebook')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-brands fa-facebook"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Facebook</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('Instagram')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-pink-50 text-pink-500 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Instagram</span>
+                        </button>
+
+                        <button onclick="openModal('adsEarnModal')" class="bg-amber-50/40 hover:bg-amber-100/50 border border-amber-200/60 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm shadow-amber-200">
+                                <i class="fa-solid fa-rectangle-ad"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-amber-900 leading-tight">Ads Earn</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('Micro Job')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Micro Job</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('Job Post')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Job Post</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('Target')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Target</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('TASK')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-clipboard-list"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">TASK</span>
+                        </button>
+
+                        <button onclick="openModal('typingJobModal')" class="bg-teal-50/40 hover:bg-teal-100/50 border border-teal-200/60 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-teal-500 text-white flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm shadow-teal-200">
+                                <i class="fa-solid fa-keyboard"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-teal-900 leading-tight">Typing Job</span>
+                        </button>
+
+                        <button onclick="openReferModal()" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Refer</span>
+                        </button>
+
+                        <button onclick="openModal('spinModal')" class="bg-purple-50 hover:bg-purple-100/70 border border-purple-200 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-brand-purple text-white flex items-center justify-center text-xl mb-1.5 group-hover:rotate-90 transition duration-500 shadow-md shadow-purple-200">
+                                <i class="fa-solid fa-dharmachakra"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-brand-purple leading-tight">Spin & Earn</span>
+                        </button>
+
+                        <button onclick="openGiftCodeModal()" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-yellow-50 text-yellow-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Gift Code</span>
+                        </button>
+
+                        <button onclick="claimDailyBonus()" class="bg-emerald-50/60 hover:bg-emerald-100 border border-emerald-200 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm shadow-emerald-200">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-emerald-900 leading-tight">Daily Bonus</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('Social Media')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-share-nodes"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Social Media</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('Leadership')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Leadership</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('Salary')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-lime-50 text-lime-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Salary</span>
+                        </button>
+
+                        <button onclick="handleServiceClick('Video Creation')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Video Creation</span>
+                        </button>
+
+                        <button onclick="openModal('dailyMissionModal')" class="bg-slate-50 hover:bg-purple-50/60 border border-slate-100 rounded-xl p-2.5 flex flex-col items-center text-center transition active:scale-95 group">
+                            <div class="w-10 h-10 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-xl mb-1.5 group-hover:scale-110 transition shadow-sm">
+                                <i class="fa-solid fa-list-check"></i>
+                            </div>
+                            <span class="text-[11px] font-semibold text-slate-700 leading-tight">Daily Mission</span>
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- RECENT TRANSACTIONS / ACTIVITY -->
+                <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
+                    <h3 class="font-bold text-slate-800 text-xs mb-3 flex items-center justify-between">
+                        <span><i class="fa-solid fa-clock-rotate-left text-brand-purple mr-1"></i> সাম্প্রতিক ট্রানজেকশন</span>
+                        <button onclick="showHistory()" class="text-[10px] text-brand-purple font-semibold hover:underline">সব দেখুন</button>
+                    </h3>
+                    <div id="tx-history-list" class="space-y-2 text-xs">
+                        <div class="flex items-center justify-between p-2 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-plus text-xs"></i></div>
+                                <div>
+                                    <p class="font-semibold text-slate-800 text-[11px]">Daily Bonus</p>
+                                    <p class="text-[9px] text-slate-400">আজ, ১০:১৫ AM</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-emerald-600">+ ৳15.00</span>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- BOTTOM NAVBAR -->
+            <nav class="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-4 py-2 flex justify-between items-center z-20">
+                <button onclick="setActiveNav(this)" class="flex flex-col items-center text-brand-purple w-12 nav-item">
+                    <i class="fa-solid fa-house text-lg"></i>
+                    <span class="text-[10px] font-bold mt-0.5">Home</span>
+                </button>
+
+                <button onclick="showHistory(); setActiveNav(this);" class="flex flex-col items-center text-slate-400 hover:text-brand-purple w-12 transition nav-item">
+                    <i class="fa-solid fa-wallet text-lg"></i>
+                    <span class="text-[10px] font-medium mt-0.5">Income</span>
+                </button>
+
+                <!-- Floating Center Team Button -->
+                <div class="relative -top-5">
+                    <button onclick="openReferModal()" class="w-14 h-14 bg-gradient-to-tr from-pink-500 to-rose-400 text-white rounded-full flex flex-col items-center justify-center shadow-lg shadow-pink-200 border-4 border-slate-50 active:scale-90 transition">
+                        <i class="fa-solid fa-users text-xl"></i>
+                    </button>
+                    <span class="block text-center text-[10px] font-bold text-slate-600 -mt-1">Team</span>
+                </div>
+
+                <button onclick="openModal('withdrawModal'); setActiveNav(this);" class="flex flex-col items-center text-slate-400 hover:text-brand-purple w-12 transition nav-item">
+                    <i class="fa-solid fa-circle-arrow-up text-lg"></i>
+                    <span class="text-[10px] font-medium mt-0.5">Withdraw</span>
+                </button>
+
+                <button onclick="handleServiceClick('Support'); setActiveNav(this);" class="flex flex-col items-center text-slate-400 hover:text-brand-purple w-12 transition nav-item">
+                    <i class="fa-solid fa-headset text-lg"></i>
+                    <span class="text-[10px] font-medium mt-0.5">Support</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- ADMIN PANEL VIEW (Hidden by Default) -->
+        <div id="admin-view" class="hidden flex-1 p-4 bg-slate-100 overflow-y-auto space-y-4 pb-20">
+            <div class="bg-slate-800 text-white rounded-2xl p-4 shadow-lg">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="font-bold text-sm tracking-wide"><i class="fa-solid fa-user-shield text-amber-400 mr-1.5"></i> Admin Control Center</h2>
+                    <span class="text-[9px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">System Live</span>
+                </div>
+                <p class="text-[11px] text-slate-300">ইউজার ব্যালেন্স, ডিপোজিট রিকোয়েস্ট এবং নোটিফিকেশন নিয়ন্ত্রণ করুন।</p>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="text-[10px] text-slate-400 font-semibold uppercase">Total Users</p>
+                    <p class="text-xl font-bold text-slate-800">1,248</p>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="text-[10px] text-slate-400 font-semibold uppercase">Pending Withdraws</p>
+                    <p class="text-xl font-bold text-amber-600">৳ 4,500</p>
+                </div>
+            </div>
+
+            <!-- Admin Balance Adjustment -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                <h3 class="font-bold text-xs text-slate-800">ইউজার ব্যালেন্স টিউন (Demo User)</h3>
+                <div class="flex gap-2">
+                    <input type="number" id="admin-balance-input" placeholder="নতুন ব্যালেন্স লিখুন" class="flex-1 text-xs p-2 border border-slate-200 rounded-lg">
+                    <button onclick="setAdminBalance()" class="bg-brand-purple text-white px-3 py-2 rounded-lg text-xs font-bold hover:bg-brand-darkPurple transition">আপডেট</button>
+                </div>
+            </div>
+
+            <!-- Update Announcement Ticker -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                <h3 class="font-bold text-xs text-slate-800">নোটিশ টিংকার আপডেট</h3>
+                <textarea id="admin-notice-input" rows="2" placeholder="নতুন অ্যানাউন্সমেন্ট টেক্সট..." class="w-full text-xs p-2 border border-slate-200 rounded-lg"></textarea>
+                <button onclick="updateNotice()" class="w-full bg-slate-800 text-white py-2 rounded-lg text-xs font-bold hover:bg-slate-900 transition">নোটিশ প্রকাশ করুন</button>
+            </div>
+        </div>
+
+        <!-- SIDEBAR DRAWER -->
+        <div id="sidebarOverlay" onclick="toggleSidebar()" class="hidden absolute inset-0 bg-slate-900/50 backdrop-blur-sm z-40 transition-opacity"></div>
+        <div id="sidebar" class="absolute top-0 left-0 bottom-0 w-64 bg-white shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+            <div class="p-5 purple-gradient-card text-white">
+                <div class="w-12 h-12 rounded-full bg-white/20 p-1 border-2 border-white/40 mb-2 overflow-hidden shadow-inner">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=QuickUser" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-bold text-sm">Md. Earner User</h3>
+                <p class="text-[11px] text-purple-200">user@quickearning.bd</p>
+                <div class="mt-2 inline-flex items-center gap-1 bg-emerald-400/20 text-emerald-200 text-[9px] font-bold px-2 py-0.5 rounded-full border border-emerald-400/30">
+                    <i class="fa-solid fa-circle-check"></i> VIP Level 1
+                </div>
+            </div>
+
+            <div class="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
+                <button onclick="toggleSidebar();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-purple-50 text-brand-purple font-semibold text-xs">
+                    <i class="fa-solid fa-house w-5 text-center"></i> Dashboard
+                </button>
+                <button onclick="toggleSidebar(); openModal('depositModal');" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-xs">
+                    <i class="fa-solid fa-money-bill-wave w-5 text-center text-emerald-500"></i> Deposit Money
+                </button>
+                <button onclick="toggleSidebar(); openModal('withdrawModal');" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-xs">
+                    <i class="fa-solid fa-building-columns w-5 text-center text-brand-purple"></i> Withdraw Money
+                </button>
+                <button onclick="toggleSidebar(); openReferModal();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-xs">
+                    <i class="fa-solid fa-user-plus w-5 text-center text-pink-500"></i> Refer & Earn
+                </button>
+                <button onclick="toggleSidebar(); openModal('spinModal');" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-xs">
+                    <i class="fa-solid fa-dharmachakra w-5 text-center text-amber-500"></i> Lucky Spin Wheel
+                </button>
+                <button onclick="toggleSidebar(); showHistory();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-xs">
+                    <i class="fa-solid fa-clock-rotate-left w-5 text-center text-blue-500"></i> Transaction History
+                </button>
+            </div>
+
+            <div class="p-4 border-t border-slate-100">
+                <button onclick="showAlert('লগআউট', 'আপনি সফলভাবে অ্যাকাউন্ট থেকে সাইন আউট করেছেন।')" class="w-full py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl text-xs font-bold transition">
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- ALL INTERACTIVE MODALS -->
+
+        <!-- Alert Modal -->
+        <div id="alertModal" class="hidden absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl p-5 w-full max-w-xs text-center shadow-2xl relative animate-in fade-in zoom-in duration-200">
+                <div id="alertIcon" class="w-12 h-12 rounded-full bg-purple-100 text-brand-purple flex items-center justify-center text-xl mx-auto mb-3">
+                    <i class="fa-solid fa-info"></i>
+                </div>
+                <h3 id="alertTitle" class="font-bold text-slate-800 text-sm mb-1">Title</h3>
+                <p id="alertMessage" class="text-xs text-slate-600 mb-4 whitespace-pre-line leading-relaxed">Message text</p>
+                <button onclick="closeModal('alertModal')" class="w-full py-2.5 bg-brand-purple text-white rounded-xl font-bold text-xs hover:bg-brand-darkPurple transition shadow-md shadow-purple-200">
+                    ঠিক আছে
+                </button>
+            </div>
+        </div>
+
+        <!-- Deposit Modal -->
+        <div id="depositModal" class="hidden absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl p-5 w-full max-w-xs shadow-2xl relative">
+                <button onclick="closeModal('depositModal')" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                <h3 class="font-bold text-slate-800 text-sm mb-3 text-center">Deposit Money</h3>
+                
+                <form onsubmit="handleDeposit(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">পেমেন্ট মেথড বেছে নিন</label>
+                        <select id="depositMethod" class="w-full p-2.5 border border-slate-200 rounded-xl text-xs bg-slate-50 font-medium focus:outline-none focus:border-brand-purple">
+                            <option value="bKash">bKash Personal (01700000000)</option>
+                            <option value="Nagad">Nagad Personal (01800000000)</option>
+                            <option value="Rocket">Rocket Personal (01900000000)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">ডিপোজিট পরিমাণ (BDT)</label>
+                        <input type="number" id="depositAmount" placeholder="e.g. 500" min="100" required class="w-full p-2.5 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-purple">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">ট্রানজেকশন আইডি (TrxID)</label>
+                        <input type="text" placeholder="e.g. 8N7A6D5F" required class="w-full p-2.5 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-purple">
+                    </div>
+                    <button type="submit" class="w-full py-2.5 bg-indigo-600 text-white rounded-xl font-bold text-xs hover:bg-indigo-700 transition mt-2 shadow-md">
+                        ডিপোজিট নিশ্চিত করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Withdraw Modal -->
+        <div id="withdrawModal" class="hidden absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl p-5 w-full max-w-xs shadow-2xl relative">
+                <button onclick="closeModal('withdrawModal')" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                <h3 class="font-bold text-slate-800 text-sm mb-3 text-center">Withdraw Earnings</h3>
+                
+                <form onsubmit="handleWithdraw(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">উইথড্র মেথড</label>
+                        <select class="w-full p-2.5 border border-slate-200 rounded-xl text-xs bg-slate-50 font-medium focus:outline-none focus:border-brand-purple">
+                            <option>bKash Personal</option>
+                            <option>Nagad Personal</option>
+                            <option>Rocket Personal</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">মোবাইল নম্বর</label>
+                        <input type="tel" placeholder="017xxxxxxxx" required class="w-full p-2.5 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-purple">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">উইথড্র পরিমাণ (সর্বনিম্ন ৳২০০)</label>
+                        <input type="number" id="withdrawAmount" placeholder="e.g. 200" min="200" required class="w-full p-2.5 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-brand-purple">
+                    </div>
+                    <button type="submit" class="w-full py-2.5 bg-brand-purple text-white rounded-xl font-bold text-xs hover:bg-brand-darkPurple transition mt-2 shadow-md shadow-purple-200">
+                        উইথড্র রিকোয়েস্ট পাঠান
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Spin Wheel Modal -->
+        <div id="spinModal" class="hidden absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl p-5 w-full max-w-xs text-center shadow-2xl relative">
+                <button onclick="closeModal('spinModal')" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600 z-10">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                
+                <h3 class="font-bold text-brand-purple text-base mb-0.5">Lucky Spin & Earn</h3>
+                <p class="text-[11px] text-slate-500 mb-3">স্পিন করে জিতুন ৳৫ থেকে ৳৩০ টাকা নিশ্চিত বোনাস!</p>
+
+                <!-- Wheel Visual -->
+                <div class="relative w-44 h-44 mx-auto my-2 flex items-center justify-center">
+                    <div class="absolute -top-2.5 z-20 text-rose-600 text-2xl drop-shadow">
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                    <div id="wheel" class="w-full h-full rounded-full border-4 border-amber-400 shadow-md relative overflow-hidden">
+                        <svg viewBox="0 0 100 100" class="w-full h-full transform -rotate-90">
+                            <path d="M50,50 L100,50 A50,50 0 0,1 75,93.3 Z" fill="#6B4EE6" />
+                            <path d="M50,50 L75,93.3 A50,50 0 0,1 25,93.3 Z" fill="#EC4899" />
+                            <path d="M50,50 L25,93.3 A50,50 0 0,1 0,50 Z" fill="#10B981" />
+                            <path d="M50,50 L0,50 A50,50 0 0,1 25,6.7 Z" fill="#F59E0B" />
+                            <path d="M50,50 L25,6.7 A50,50 0 0,1 75,6.7 Z" fill="#3B82F6" />
+                            <path d="M50,50 L75,6.7 A50,50 0 0,1 100,50 Z" fill="#EF4444" />
+                        </svg>
+                    </div>
+                    <div class="absolute w-8 h-8 bg-white rounded-full border-2 border-amber-400 z-10 flex items-center justify-center shadow">
+                        <i class="fa-solid fa-star text-amber-500 text-xs"></i>
+                    </div>
+                </div>
+
+                <button id="spinBtn" onclick="startSpin()" class="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-bold text-xs hover:brightness-110 transition mt-3 shadow-md shadow-amber-200">
+                    স্পিন শুরু করুন!
+                </button>
+            </div>
+        </div>
+
+        <!-- Ads Earn Modal -->
+        <div id="adsEarnModal" class="hidden absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl p-5 w-full max-w-xs text-center shadow-2xl relative">
+                <button onclick="closeModal('adsEarnModal')" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                
+                <h3 class="font-bold text-amber-600 text-base mb-1"><i class="fa-solid fa-rectangle-ad mr-1"></i> Watch Ads & Earn</h3>
+                <p class="text-xs text-slate-500 mb-3">১০ সেকেন্ড অ্যাড দেখুন এবং প্রতি অ্যাডে ৳২.৫০ আয় করুন!</p>
+
+                <div id="ad-box" class="bg-slate-100 border-2 border-dashed border-amber-300 rounded-xl h-32 flex flex-col items-center justify-center p-4 my-3">
+                    <i class="fa-solid fa-play-circle text-4xl text-amber-500 mb-2 animate-pulse"></i>
+                    <p id="ad-status" class="text-xs font-bold text-slate-700">অ্যাড দেখা শুরু করতে বাটনে চাপুন</p>
+                </div>
+
+                <button id="watchAdBtn" onclick="startWatchingAd()" class="w-full py-2.5 bg-amber-500 text-white rounded-xl font-bold text-xs hover:bg-amber-600 transition shadow-md">
+                    অ্যাড চালু করুন
+                </button>
+            </div>
+        </div>
+
+        <!-- Typing Job Modal -->
+        <div id="typingJobModal" class="hidden absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl p-5 w-full max-w-xs shadow-2xl relative">
+                <button onclick="closeModal('typingJobModal')" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                
+                <h3 class="font-bold text-teal-600 text-base mb-1 text-center"><i class="fa-solid fa-keyboard mr-1"></i> Typing Job</h3>
+                <p class="text-xs text-slate-500 mb-3 text-center">সঠিক ক্যাপচা টাইপ করুন এবং ৩ টাকা ইনকাম করুন!</p>
+
+                <div class="bg-teal-50 border border-teal-200 rounded-xl p-3 text-center mb-3">
+                    <span id="captcha-code" class="text-lg font-black tracking-widest text-teal-800 select-none">Q8B9X2</span>
+                    <button onclick="generateCaptcha()" class="ml-2 text-teal-600 hover:rotate-180 transition"><i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+
+                <input type="text" id="captcha-input" placeholder="ক্যাপচা কোড টাইপ করুন..." class="w-full p-2.5 border border-slate-200 rounded-xl text-xs mb-3 text-center font-bold focus:outline-none focus:border-teal-500 uppercase">
+
+                <button onclick="submitCaptcha()" class="w-full py-2.5 bg-teal-600 text-white rounded-xl font-bold text-xs hover:bg-teal-700 transition shadow-md">
+                    সাবমিট করুন
+                </button>
+            </div>
+        </div>
+
+        <!-- Daily Mission Modal -->
+        <div id="dailyMissionModal" class="hidden absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl p-5 w-full max-w-xs shadow-2xl relative">
+                <button onclick="closeModal('dailyMissionModal')" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                
+                <h3 class="font-bold text-slate-800 text-base mb-3 flex items-center gap-1.5">
+                    <i class="fa-solid fa-list-check text-pink-500"></i> Daily Missions
+                </h3>
+
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-slate-800">৩টি স্পিন সম্পন্ন করুন</p>
+                            <p class="text-[10px] text-slate-400">পুরষ্কার: ৳১০.০০</p>
+                        </div>
+                        <button onclick="claimMissionReward(10)" class="px-2.5 py-1 bg-pink-500 text-white text-[10px] font-bold rounded-lg hover:bg-pink-600 transition">ক্লেম</button>
+                    </div>
+                    <div class="p-2.5 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-slate-800">২ জন বন্ধুকে রেফার করুন</p>
+                            <p class="text-[10px] text-slate-400">পুরষ্কার: ৳২০.০০</p>
+                        </div>
+                        <button onclick="claimMissionReward(20)" class="px-2.5 py-1 bg-pink-500 text-white text-[10px] font-bold rounded-lg hover:bg-pink-600 transition">ক্লেম</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // App State Variables
+        let balance = 173.90;
+        let hasClaimedDaily = false;
+        let isAdmin = false;
+        let currentCaptcha = "Q8B9X2";
+        let transactions = [
+            { type: 'Daily Bonus', amount: 15.00, time: 'আজ, ১০:১৫ AM', positive: true }
+        ];
+
+        // UI Initialization
+        function updateUI() {
+            document.getElementById('main-balance').innerText = balance.toFixed(2);
+            renderTransactions();
+        }
+
+        // Toggle Sidebar Drawer
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        // Open and Close Modals Helper
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Generic Alert Box
+        function showAlert(title, message, iconClass = 'fa-solid fa-circle-check text-emerald-500') {
+            document.getElementById('alertTitle').innerText = title;
+            document.getElementById('alertMessage').innerText = message;
+            document.getElementById('alertIcon').innerHTML = `<i class="${iconClass}"></i>`;
+            openModal('alertModal');
+        }
+
+        // Service Click Dialog Router
+        function handleServiceClick(serviceName) {
+            const details = {
+                'Gmail Service': 'প্রতিটি ভেরিফাইড জিমেইল ক্রিয়েট করার জন্য ১০ টাকা পাবেন। কাজ শুরু করতে আমাদের টেলিগ্রাম সাপোর্ট গ্রপে জয়েন করুন।',
+                'Facebook': 'ফেসবুক পেজ লাইক, ফলো এবং পোস্ট শেয়ার করার কাজ করে পয়েন্ট ইনকাম করুন।',
+                'Instagram': 'ইন্সটাগ্রাম অ্যাকাউন্ট ফলো এবং লাইক দিয়ে দৈনিক সহজ আয় নিশ্চিত করুন।',
+                'Micro Job': 'ছোট ছোট ওয়েবসাইট ভিজিট, সার্ভে ও সাইন আপের কাজ সম্পন্ন করে ইনকাম করুন।',
+                'Job Post': 'আপনার নিজের সোশ্যাল ভিডিও বা কাজের জন্য মেম্বার নিয়োগ দিতে জব পোস্ট তৈরি করুন।',
+                'Target': 'আজকের টার্গেট ৫০টি টাস্ক পূরণ করলে ৫০ টাকা বিশেষ বোনাস প্রদান করা হবে।',
+                'TASK': 'আপনার জন্য উপলব্ধ সকল পেন্ডিং কাজের তালিকা থেকে আপনার পছন্দের কাজ বেছে নিন।',
+                'Social Media': 'সোশ্যাল মিডিয়া ফলোয়ার ও ওয়াচটাইম বাড়াতে প্রোমোশন সেবায় কাজ করুন।',
+                'Leadership': 'এই মাসের সেরা ১০ জন উপার্জনকারীর তালিকায় স্থান পেয়ে সর্বোচ্চ ৫০০ টাকা পুরষ্কার জিতুন!',
+                'Salary': 'নিয়মিত প্রতিদিন কাজ করলে প্রতি মাসের ১ তারিখে নির্দিষ্ট স্যালারি প্রদান করা হয়।',
+                'Video Creation': 'Quick Earning BD অ্যাপ নিয়ে ইউটিউব বা টিকটকে ভিডিও বানিয়ে পোস্ট করলে পাবেন ২০০ টাকা ইনস্ট্যান্ট বোনাস!',
+                'Support': 'যেকোনো কারিগরি সহায়তা বা পেমেন্ট সংক্রান্ত হেল্প পেতে আমাদের অফিশিয়াল টেলিগ্রাম সাপোর্টে যোগাযোগ করুন।'
+            };
+
+            showAlert(serviceName, details[serviceName] || 'এই পরিষেবাটির কাজ শীঘ্রই আপডেট করা হবে। সাথে থাকুন!', 'fa-solid fa-shield-halved text-brand-purple');
+        }
+
+        // Refer Modal
+        function openReferModal() {
+            showAlert('Refer & Earn', 'আপনার ইউনিক রেফারেল কোড: QBD99283\nআপনার বন্ধু রেজিস্টার করলে দুজনেই পাবেন ৳১০ টাকা বোনাস!', 'fa-solid fa-users text-rose-500');
+        }
+
+        // Gift Code Redemption
+        function openGiftCodeModal() {
+            const code = prompt("আপনার গিফট কোডটি এখানে ইনপুট করুন:");
+            if (code) {
+                if (code.trim().toLowerCase() === 'quick50') {
+                    addBalance(50.00, 'Gift Code Reward');
+                    showAlert('অভিনন্দন!', 'গিফট কোড সফলভাবে রিডিম হয়েছে! ৳৫০ টাকা ব্যালেন্সে যোগ করা হয়েছে।');
+                } else {
+                    showAlert('ব্যর্থ হয়েছে', 'অবৈধ অথবা মেয়াদ্দোত্তীর্ণ গিফট কোড!', 'fa-solid fa-circle-xmark text-rose-500');
+                }
+            }
+        }
+
+        // Daily Bonus Logic
+        function claimDailyBonus() {
+            if (hasClaimedDaily) {
+                showAlert('আজকের বোনাস নেওয়া শেষ!', 'আপনি আজকের ডেইলি বোনাস ইতোমধ্যে গ্রহণ করেছেন। আগামীকাল আবার চেষ্টা করুন।', 'fa-solid fa-clock text-amber-500');
+            } else {
+                hasClaimedDaily = true;
+                addBalance(15.00, 'Daily Bonus');
+                showAlert('ডেইলি বোনাস!', 'অভিনন্দন! আপনি আজকের ৳১৫.০০ ডেইলি বোনাস গ্রহণ করেছেন।');
+            }
+        }
+
+        // Helper to update balance & add history
+        function addBalance(amount, description, isPositive = true) {
+            if (isPositive) {
+                balance += amount;
+            } else {
+                balance -= amount;
+            }
+            transactions.unshift({
+                type: description,
+                amount: amount,
+                time: 'এখন',
+                positive: isPositive
+            });
+            updateUI();
+        }
+
+        // Render Recent Transactions
+        function renderTransactions() {
+            const list = document.getElementById('tx-history-list');
+            if (transactions.length === 0) {
+                list.innerHTML = `<p class="text-slate-400 text-center py-2">কোন ট্রানজেকশন নেই</p>`;
+                return;
+            }
+            list.innerHTML = transactions.slice(0, 4).map(tx => `
+                <div class="flex items-center justify-between p-2 bg-slate-50 rounded-xl border border-slate-100">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-lg ${tx.positive ? 'bg-emerald-100 text-emerald-600' : 'bg-rose-100 text-rose-600'} flex items-center justify-center">
+                            <i class="fa-solid ${tx.positive ? 'fa-plus' : 'fa-minus'} text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-slate-800 text-[11px]">${tx.type}</p>
+                            <p class="text-[9px] text-slate-400">${tx.time}</p>
+                        </div>
+                    </div>
+                    <span class="font-bold ${tx.positive ? 'text-emerald-600' : 'text-rose-600'}">${tx.positive ? '+' : '-'} ৳${tx.amount.toFixed(2)}</span>
+                </div>
+            `).join('');
+        }
+
+        // Handle Deposit Form Submit
+        function handleDeposit(e) {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('depositAmount').value);
+            const method = document.getElementById('depositMethod').value;
+            if (amount >= 100) {
+                addBalance(amount, `Deposit (${method})`);
+                closeModal('depositModal');
+                showAlert('ডিপোজিট সফল!', `আপনার ৳${amount} ডিপোজিট রিকোয়েস্ট গ্রহণ করা হয়েছে এবং অ্যাকাউন্ট ব্যালেন্সে যোগ করা হয়েছে।`);
+            }
+        }
+
+        // Handle Withdraw Form Submit
+        function handleWithdraw(e) {
+            e.preventDefault();
+            const amount = parseFloat(document.getElementById('withdrawAmount').value);
+            if (amount > balance) {
+                showAlert('অপর্যাপ্ত ব্যালেন্স', 'আপনার একাউন্টে পর্যাপ্ত ব্যালেন্স নেই!', 'fa-solid fa-triangle-exclamation text-rose-500');
+            } else if (amount >= 200) {
+                addBalance(amount, 'Withdrawal', false);
+                closeModal('withdrawModal');
+                showAlert('উইথড্র রিকোয়েস্ট সফল!', `৳${amount} উইথড্র সফলভাবে গ্রহণ করা হয়েছে। ২৪ ঘণ্টার মধ্যে পেমেন্ট প্রসেস হবে।`);
+            }
+        }
+
+        // Spin Wheel Functionality
+        let isSpinning = false;
+        function startSpin() {
+            if (isSpinning) return;
+            isSpinning = true;
+            const spinBtn = document.getElementById('spinBtn');
+            spinBtn.disabled = true;
+            spinBtn.innerText = 'স্পিন ঘোরানো হচ্ছে...';
+
+            const wheel = document.getElementById('wheel');
+            const randomDegrees = Math.floor(3600 + Math.random() * 360);
+            wheel.style.transform = `rotate(${randomDegrees}deg)`;
+
+            setTimeout(() => {
+                const prize = (Math.floor(Math.random() * 20) + 5);
+                addBalance(prize, 'Lucky Spin Reward');
+                
+                isSpinning = false;
+                spinBtn.disabled = false;
+                spinBtn.innerText = 'স্পিন শুরু করুন!';
+                closeModal('spinModal');
+                
+                showAlert('স্পিন বিজয়ী!', `অভিনন্দন! আপনি লাকি স্পিন করে ৳${prize}.০০ ক্যাশ পুরষ্কার জিতেছেন!`);
+                wheel.style.transition = 'none';
+                wheel.style.transform = 'rotate(0deg)';
+                setTimeout(() => {
+                    wheel.style.transition = 'transform 4s cubic-bezier(0.15, 0.99, 0.18, 0.99)';
+                }, 50);
+            }, 4000);
+        }
+
+        // Ads Earn Timer System
+        function startWatchingAd() {
+            const btn = document.getElementById('watchAdBtn');
+            const status = document.getElementById('ad-status');
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
+
+            let timeLeft = 10;
+            status.innerText = `বিজ্ঞাপন চলছে... (${timeLeft}s)`;
+
+            const timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    status.innerText = `বিজ্ঞাপন চলছে... (${timeLeft}s)`;
+                } else {
+                    clearInterval(timer);
+                    addBalance(2.50, 'Ads Earn Reward');
+                    status.innerText = 'বিজ্ঞাপন দেখা সম্পন্ন হয়েছে!';
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50');
+                    closeModal('adsEarnModal');
+                    showAlert('অ্যাড বোনাস!', 'আপনি সফলভাবে অ্যাড দেখে ৳২.৫০ ইনকাম করেছেন!');
+                }
+            }, 1000);
+        }
+
+        // Captcha / Typing Job Generator
+        function generateCaptcha() {
+            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+            let code = "";
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            currentCaptcha = code;
+            document.getElementById('captcha-code').innerText = code;
+        }
+
+        function submitCaptcha() {
+            const input = document.getElementById('captcha-input').value.trim().toUpperCase();
+            if (input === currentCaptcha) {
+                addBalance(3.00, 'Typing Job Reward');
+                document.getElementById('captcha-input').value = "";
+                generateCaptcha();
+                closeModal('typingJobModal');
+                showAlert('ক্যাপচা পূরণ সফল!', 'সঠিক ক্যাপচা টাইপ করার জন্য আপনার অ্যাকাউন্টে ৳৩.০০ যোগ হয়েছে।');
+            } else {
+                showAlert('ভুল ক্যাপচা!', 'ক্যাপচা কোডটি মেলেনি। আবার চেষ্টা করুন।', 'fa-solid fa-circle-xmark text-rose-500');
+            }
+        }
+
+        // Mission Reward Claim
+        function claimMissionReward(reward) {
+            addBalance(reward, 'Daily Mission Complete');
+            closeModal('dailyMissionModal');
+            showAlert('মিশন পুরষ্কার!', `অভিনন্দন! মিশন সম্পন্ন করে ৳${reward}.০০ অর্জন করেছেন।`);
+        }
+
+        // History Dialog
+        function showHistory() {
+            const formatted = transactions.map(t => `${t.positive ? '+' : '-'} ৳${t.amount.toFixed(2)} (${t.type})`).join('\n');
+            showAlert('লেনদেনের ইতিহাস', formatted || 'কোন লেনদেন নেই');
+        }
+
+        // Profile Modal
+        function openProfileModal() {
+            showAlert('User Profile', `নাম: Md. Earner User\nইমেইল: user@quickearning.bd\nব্যালেন্স: ৳${balance.toFixed(2)}`, 'fa-solid fa-user-circle text-brand-purple');
+        }
+
+        // Show Notification Center
+        function showNotifications() {
+            document.getElementById('notif-badge').classList.add('hidden');
+            showAlert('নোটিফিকেশন সেন্টার', '১. রেফারেল বোনাস বৃদ্ধি করা হয়েছে!\n২. বিকাশ ডিপোজিট ক্যাশব্যাক অফার চলছে।', 'fa-solid fa-bell text-indigo-600');
+        }
+
+        // Admin Toggle
+        function toggleAdminPanel() {
+            isAdmin = !isAdmin;
+            const userView = document.getElementById('user-view');
+            const adminView = document.getElementById('admin-view');
+            const modeText = document.getElementById('mode-text');
+
+            if (isAdmin) {
+                userView.classList.add('hidden');
+                adminView.classList.remove('hidden');
+                modeText.innerText = 'User App';
+            } else {
+                adminView.classList.add('hidden');
+                userView.classList.remove('hidden');
+                modeText.innerText = 'Admin';
+            }
+        }
+
+        // Admin Actions
+        function setAdminBalance() {
+            const val = parseFloat(document.getElementById('admin-balance-input').value);
+            if (!isNaN(val)) {
+                balance = val;
+                updateUI();
+                alert('ব্যালেন্স আপডেট করা হয়েছে!');
+            }
+        }
+
+        function updateNotice() {
+            const txt = document.getElementById('admin-notice-input').value;
+            if (txt) {
+                document.getElementById('announcement-text').innerText = txt;
+                alert('অ্যানাউন্সমেন্ট টেক্সট আপডেট হয়েছে!');
+            }
+        }
+
+        // Navigation Active Highlight
+        function setActiveNav(element) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('text-brand-purple');
+                item.classList.add('text-slate-400');
+            });
+            element.classList.remove('text-slate-400');
+            element.classList.add('text-brand-purple');
+        }
+
+        // On Load Init
+        window.onload = function() {
+            updateUI();
+        };
+    </script>
+</body>
+</html>
+```
